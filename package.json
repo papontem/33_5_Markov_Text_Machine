@@ -1,0 +1,19 @@
+{
+  "name": "33_5_markov_text_machine",
+  "version": "1.0.0",
+  "description": "exercise where we created markov text chain machines using node.",
+  "main": "makeText.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/papontem/33_5_Markov_Text_Machine.git"
+  },
+  "author": "Phedias A.M.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/papontem/33_5_Markov_Text_Machine/issues"
+  },
+  "homepage": "https://github.com/papontem/33_5_Markov_Text_Machine#readme"
+}
