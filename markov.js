@@ -43,20 +43,26 @@ class MarkovMachine {
 		// console.log("Making Chains.....");
 		let chains = {};
 		this.words.forEach((word, index, array) => {
-			// console.log("	 word:", word);
+			// console.log("Current word:", word);
 			// console.log("	index:", index);
 			// console.log("	array:", array);
+
 			// if word is not already in the key word chains add it
 			if (!chains[word]) {
+				// console.log("Appended as a key");
 				chains[word] = [];
 			}
 			// if a next word exists, PUSH it to the array of the chain word were currently on
 			if (this.words[index + 1]) {
+				// console.log("A next word Exists!");
 				// console.log("next word?:", this.words[index+1]);
 				chains[word].push(this.words[index + 1]);
+				// console.log(`Pushed it!\nchains[${word}] = ${chains[word]} `);
+				// console.log("Current map of word chains:",chains);
 			} else {
 				// if there was no word, then weve reached the end.
-				chains[word] = [null];
+				// chains[word] = [null]; // probable cause of the bug // PAM: :D GOT IT 🎉🎉🎉!!
+				chains[word].push(null); // PAM: Fixed
 			}
 		});
 		// console.log("Resulting Chains:", chains);

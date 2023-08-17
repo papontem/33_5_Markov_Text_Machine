@@ -118,21 +118,5 @@ describe("MakrovMachine Class Tests", function () {
         });
     });
 
-	// test("this.wordMapChains created as a object type correctly", function () {
-    //     // Test Logic
-    //     // Expectations
-	// });
-
-	// test("this.wordMapChains created with the expected keys", function () {
-    //     // Test Logic
-    //     // Expectations
-	// });
-	// test("this.wordMapChains created with the expected values", function () {
-    //     // Test Logic
-    //     // Expectations
-	// });
-	// test("this.wordMapChains created with the expected values", function () {
-    //     // Test Logic
-    //     // Expectations
-	// });
+    
 });
