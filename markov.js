@@ -70,31 +70,58 @@ class MarkovMachine {
 	 */
 	makeText(numWords = 100) {
 		console.log("Making text of length:", numWords);
-		let text = [];
-
-		// possible helper word trackers
-		// randomly pick starting word.
-		let currentWord;
-		let nextChainLink;
-		
-		
-		// create the text
-		while (text.length < numWords) {
-
-			// get a random chain from the picked word
-			// end the string on the word whose next chain is null
-
-			// if words next chain link is null, and were still away from end, pick a new word.
+		let resultText = [];
 
 
-			
+		// Inspiration for randomKeyFromObj
+		// https://stackoverflow.com/a/15106541
+		// var randomProperty = function (obj) {
+		// 	var keys = Object.keys(obj);
+		// 	return obj[keys[ keys.length * Math.random() << 0]];
+		// };
+		// https://stackoverflow.com/a/4550514
+		// const randomElement = array[Math.floor(Math.random() * array.length)];
+
+		// Helper function to randomly select a key from an object
+		let getRandKeyFromObj = function (obj) {
+			let keysArray = Object.keys(obj);
+			let randomKey = keysArray[Math.floor(Math.random() * keysArray.length)];
+			console.log("random key:", randomKey);
+			return randomKey;
+		};
+
+		// init word tracker
+		let currentWord = getRandKeyFromObj(this.wordMapChains)
+		console.log(currentWord);
+
+		// Create the generated text array
+		while (resultText.length < numWords) {
+			// Get the chain links from our current word key; will be null if the word is a dead end
+			let possibleNextWords = this.wordMapChains[currentWord];
+
+			if (possibleNextWords) {
+				// Add the current word to the generated text
+				resultText.push(currentWord);
+
+				// Randomly pick which chain link to use next
+				let nextWord =
+					possibleNextWords[
+						Math.floor(Math.random() * possibleNextWords.length)
+					];
+				console.log("Next Word in Chain:", nextWord);
+
+				currentWord = nextWord;
+			} else {
+				// Previously picked word led to a dead end, pick another word and start over
+				currentWord = getRandKeyFromObj(this.wordMapChains);
+			}
 		}
 
-		text = text.join(" ")
-		console.log("Resulting Text:",text);
-		return text
+		console.log(resultText);
+		return resultText.join(" ");
 	}
 }
 
 let mm = new MarkovMachine("the cat in the hat");
 console.log(mm.wordMapChains);
+console.log(mm.makeText(numWords=12));
