@@ -1,4 +1,15 @@
-/** Textual markov chain generator */
+/** Textual markov chain generator
+ * You should be able to instantiate it like this:
+ *    let mm = new MarkovMachine("the cat in the hat");
+ *
+ * //SIDENOTE PAM FUTURE TODO: would we not like to create and generate text chains straight from terminal?
+ * for example:
+ *     $ ndoe markov.js [optional-output-write-flag] [output-write-path] "input-string" [lenght-of-output]
+ *
+ * Then, whenever you want to get generated text from it:
+ *     mm.makeText();
+ *     mm.makeText(numWords=50);
+ */
 
 class MarkovMachine {
 	/** build markov machine; read in text.*/
@@ -25,16 +36,6 @@ class MarkovMachine {
 	 *     "hat": [null]
 	 * }
 	 *
-	 * You should be able to instantiate it like this:
-	 *    let mm = new MarkovMachine("the cat in the hat");
-	 *
-	 * //SIDENOTE PAM FUTURE TODO: would we not like to create and generate text chains straight from terminal?
-	 * for example:
-	 * $ ndoe markov.js [optional-output-write-flag] [output-write-path] "input-string" [lenght-of-output]
-	 *
-	 * Then, whenever you want to get generated text from it:
-	 *     mm.makeText();
-	 *     mm.makeText(numWords=50);
 	 *
 	 * @returns {Object} A map (dictionary) of word chains. Keys are individual words, and values are arrays of possible following words.
 	 */
@@ -122,10 +123,9 @@ class MarkovMachine {
 }
 
 module.exports = {
-	MarkovMachine
+	MarkovMachine,
 };
 
 // let mm = new MarkovMachine("the cat in the hat");
 // console.log(mm.wordMapChains);
 // console.log(mm.makeText(numWords=12));
-
