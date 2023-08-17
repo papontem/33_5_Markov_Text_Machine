@@ -69,9 +69,32 @@ class MarkovMachine {
 	 * @returns {string} The generated random text.
 	 */
 	makeText(numWords = 100) {
-		// TODO
+		console.log("Making text of length:", numWords);
+		let text = [];
+
+		// possible helper word trackers
+		// randomly pick starting word.
+		let currentWord;
+		let nextChainLink;
+		
+		
+		// create the text
+		while (text.length < numWords) {
+
+			// get a random chain from the picked word
+			// end the string on the word whose next chain is null
+
+			// if words next chain link is null, and were still away from end, pick a new word.
+
+
+			
+		}
+
+		text = text.join(" ")
+		console.log("Resulting Text:",text);
+		return text
 	}
 }
 
-let mm = new MarkovMachine("the cat in the hat.");
+let mm = new MarkovMachine("the cat in the hat");
 console.log(mm.wordMapChains);
