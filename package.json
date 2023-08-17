@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/papontem/33_5_Markov_Text_Machine/issues"
   },
-  "homepage": "https://github.com/papontem/33_5_Markov_Text_Machine#readme"
+  "homepage": "https://github.com/papontem/33_5_Markov_Text_Machine#readme",
+  "dependencies": {
+    "axios": "^1.4.0"
+  }
 }
