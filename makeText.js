@@ -19,7 +19,7 @@ const { MarkovMachine } = require("./markov.js");
 
 // exit listener
 process.on("exit", function (code) {
-    console.log(`EXITING WITH CODE: ${code}`);
+	console.log(`EXITING WITH CODE: ${code}`);
 });
 
 // console.log(process.argv);
@@ -29,18 +29,17 @@ process.on("exit", function (code) {
 
 let source;
 let sourceType;
-let outputFilePath; // PAM FUTURE TODO: combine logic from previous exercise to write to a file to store markov text created by this js script 
+let outputFilePath; // PAM FUTURE TODO: combine logic from previous exercise to write to a file to store markov text created by this js script
 
 // Get source type else exit
-if (process.argv[2] === "file" || process.argv[2] === "url" ) {
-    sourceType = process.argv[2]
+if (process.argv[2] === "file" || process.argv[2] === "url") {
+	sourceType = process.argv[2];
 	source = process.argv[3];
-    console.log("Source Type:", sourceType);
+	console.log("Source Type:", sourceType);
 	console.log("     Source:", source);
-
 } else {
-    console.log("User did not specify if source type is a 'file' or a 'url'");
-	process.exit(1)
+	console.log("User did not specify if source type is a 'file' or a 'url'");
+	process.exit(1);
 }
 
 // Read local resource (file)
@@ -54,7 +53,7 @@ async function cat(path) {
 			reject(error);
 		}
 	});
-};
+}
 
 // get online resource (URL)
 async function webCat(url) {
@@ -67,7 +66,7 @@ async function webCat(url) {
 			reject(error);
 		}
 	});
-};
+}
 
 // Helpful validation functions
 // validate if input is a URL
@@ -79,7 +78,7 @@ function isURL(input) {
 		// console.error(`The input: ${input} was not a valid URL: ${error}`);
 		return false;
 	}
-};
+}
 
 // validate if input is a file path
 function isPATH(input) {
@@ -90,7 +89,7 @@ function isPATH(input) {
 		// console.error(`The input: ${input} was not a valid path string: ${error}`);
 		return false;
 	}
-};
+}
 
 // function to determine if we should get the url or read the file at path based on input
 async function getReadWriteData(source, outputFilePath = null) {
@@ -105,7 +104,7 @@ async function getReadWriteData(source, outputFilePath = null) {
 				writeToFile(outputFilePath, data);
 			}
 
-            return data
+			return data;
 		} catch (error) {
 			console.error(`ERROR: ${error}`);
 			process.exit(1);
@@ -121,7 +120,7 @@ async function getReadWriteData(source, outputFilePath = null) {
 			if (outputFilePath && isPATH(outputFilePath)) {
 				writeToFile(outputFilePath, data);
 			}
-            return data
+			return data;
 		} catch (error) {
 			console.error(`ERROR: ${error}`);
 			process.exit(1);
@@ -130,24 +129,23 @@ async function getReadWriteData(source, outputFilePath = null) {
 		console.error("ERROR: Destination sent was not a valid path or URL");
 		process.exit(1);
 	}
-};
+}
 
 // Make markov machine and make text out of source's text data
-async function main(){
+async function main() {
+	// get string data
+	let data = String(await getReadWriteData(source));
 
-    // get string data
-    let data = String( await getReadWriteData(source) )
+	// console.log(data);
+	// create markov machine and feedit string data
+	let mm = new MarkovMachine(data);
 
-    // console.log(data);
-    // create markov machine and feedit string data
-    let mm = new MarkovMachine(data)
+	// create the text
+	result = mm.makeText();
 
-    // create the text
-    result = mm.makeText()
+	// put text on console
+	console.log(result);
 
-    // put text on console
-    console.log(result);
-    
-    // return result
+	// return result
 }
-main()
+main();

@@ -76,7 +76,7 @@ class MarkovMachine {
 	 * @returns {string} The generated random text.
 	 */
 	makeText(numWords = 100) {
-		console.log("Making text of length:", numWords);
+		// console.log("Making text of length:", numWords);
 		let resultText = [];
 
 		// Inspiration for getRandKeyFromObj
