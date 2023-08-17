@@ -24,14 +24,14 @@ class MarkovMachine {
 	 *      "in": ["the"] ,
 	 *     "hat": [null]
 	 * }
-	 * 
-	 * You should be able to instantiate it like this: 
-	 *    let mm = new MarkovMachine("the cat in the hat"); 
-	 * 
+	 *
+	 * You should be able to instantiate it like this:
+	 *    let mm = new MarkovMachine("the cat in the hat");
+	 *
 	 * //SIDENOTE PAM FUTURE TODO: would we not like to create and generate text chains straight from terminal?
 	 * for example:
-	 * $ ndoe markov.js [optional-output-write-flag] [output-write-path] "input-string" [lenght-of-output] 
-	 * 
+	 * $ ndoe markov.js [optional-output-write-flag] [output-write-path] "input-string" [lenght-of-output]
+	 *
 	 * Then, whenever you want to get generated text from it:
 	 *     mm.makeText();
 	 *     mm.makeText(numWords=50);
@@ -39,9 +39,9 @@ class MarkovMachine {
 	 * @returns {Object} A map (dictionary) of word chains. Keys are individual words, and values are arrays of possible following words.
 	 */
 	makeChains() {
-		console.log("Making Chains.....");
-		let chains = {}
-		this.words.forEach( (word,index,array) => {
+		// console.log("Making Chains.....");
+		let chains = {};
+		this.words.forEach((word, index, array) => {
 			// console.log("	 word:", word);
 			// console.log("	index:", index);
 			// console.log("	array:", array);
@@ -50,16 +50,16 @@ class MarkovMachine {
 				chains[word] = [];
 			}
 			// if a next word exists, PUSH it to the array of the chain word were currently on
-			if(this.words[index+1]){
+			if (this.words[index + 1]) {
 				// console.log("next word?:", this.words[index+1]);
-				chains[word].push(this.words[index+1])
-			}else{
+				chains[word].push(this.words[index + 1]);
+			} else {
 				// if there was no word, then weve reached the end.
 				chains[word] = [null];
 			}
 		});
 		// console.log("Resulting Chains:", chains);
-		return chains
+		return chains;
 	}
 
 	/**
@@ -72,8 +72,7 @@ class MarkovMachine {
 		console.log("Making text of length:", numWords);
 		let resultText = [];
 
-
-		// Inspiration for randomKeyFromObj
+		// Inspiration for getRandKeyFromObj
 		// https://stackoverflow.com/a/15106541
 		// var randomProperty = function (obj) {
 		// 	var keys = Object.keys(obj);
@@ -86,13 +85,13 @@ class MarkovMachine {
 		let getRandKeyFromObj = function (obj) {
 			let keysArray = Object.keys(obj);
 			let randomKey = keysArray[Math.floor(Math.random() * keysArray.length)];
-			console.log("random key:", randomKey);
+			// console.log("random key:", randomKey);
 			return randomKey;
 		};
 
 		// init word tracker
-		let currentWord = getRandKeyFromObj(this.wordMapChains)
-		console.log(currentWord);
+		let currentWord = getRandKeyFromObj(this.wordMapChains);
+		// console.log("Starting with:", currentWord);
 
 		// Create the generated text array
 		while (resultText.length < numWords) {
@@ -108,7 +107,7 @@ class MarkovMachine {
 					possibleNextWords[
 						Math.floor(Math.random() * possibleNextWords.length)
 					];
-				console.log("Next Word in Chain:", nextWord);
+				// console.log("Next Word in Chain:", nextWord);
 
 				currentWord = nextWord;
 			} else {
@@ -117,11 +116,16 @@ class MarkovMachine {
 			}
 		}
 
-		console.log(resultText);
+		// console.log(resultText);
 		return resultText.join(" ");
 	}
 }
 
-let mm = new MarkovMachine("the cat in the hat");
-console.log(mm.wordMapChains);
-console.log(mm.makeText(numWords=12));
+module.exports = {
+	MarkovMachine
+};
+
+// let mm = new MarkovMachine("the cat in the hat");
+// console.log(mm.wordMapChains);
+// console.log(mm.makeText(numWords=12));
+
