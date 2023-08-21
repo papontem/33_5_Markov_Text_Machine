@@ -4,10 +4,14 @@ We will complete the task of implementing our own Markov Text Machine for genera
 
 ## How To Run
 - Download a clone of this repo
-- navigate to the directory using your teminal, use the node init command and the node package manager init commad to get all the dependcies loaded and your node repl ready at any time.
+- Navigate to the repository's directory using your terminal.
+- Install the projects dependencies with the following command:
 ```
-$ node init
-$ npm init
+$ npm install
+```
+- to start the Node.js REPL (Read-Eval-Print Loop), you simply use the command:
+```
+$ node
 ```
 - then you can call node to run any of the scripts like so:
 ```
